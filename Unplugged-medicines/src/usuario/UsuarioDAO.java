@@ -1,4 +1,4 @@
-package pacote;
+package usuario;
 
 public class UsuarioDAO {
 	public boolean cadastrarUsuario() {

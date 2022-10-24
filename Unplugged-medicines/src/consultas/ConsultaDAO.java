@@ -1,4 +1,4 @@
-package pacote3;
+package consultas;
 
 import java.util.List;
 

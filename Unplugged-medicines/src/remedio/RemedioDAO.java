@@ -1,4 +1,4 @@
-package pacote2;
+package remedio;
 
 import java.util.ArrayList;
 
