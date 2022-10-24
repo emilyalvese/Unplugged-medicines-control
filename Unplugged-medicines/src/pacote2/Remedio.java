@@ -3,12 +3,69 @@ package pacote2;
 import java.time.LocalDate;
 
 public class Remedio {
-	public String nome;
-	public String marca;
-	public LocalDate validade;
-	public String TipoRemedio;
-	public LocalDate horarios;
-	public Integer quantidadeDiaria;
-	public Integer armazenamentoTotal;
+	private String nome;
+	private String marca;
+	private LocalDate validade;
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getMarca() {
+		return marca;
+	}
+
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+
+	public LocalDate getValidade() {
+		return validade;
+	}
+
+	public void setValidade(LocalDate validade) {
+		this.validade = validade;
+	}
+
+	public String getTipoRemedio() {
+		return TipoRemedio;
+	}
+
+	public void setTipoRemedio(String tipoRemedio) {
+		TipoRemedio = tipoRemedio;
+	}
+
+	public LocalDate getHorarios() {
+		return horarios;
+	}
+
+	public void setHorarios(LocalDate horarios) {
+		this.horarios = horarios;
+	}
+
+	public Integer getQuantidadeDiaria() {
+		return quantidadeDiaria;
+	}
+
+	public void setQuantidadeDiaria(Integer quantidadeDiaria) {
+		this.quantidadeDiaria = quantidadeDiaria;
+	}
+
+	public Integer getArmazenamentoTotal() {
+		return armazenamentoTotal;
+	}
+
+	public void setArmazenamentoTotal(Integer armazenamentoTotal) {
+		this.armazenamentoTotal = armazenamentoTotal;
+	}
+
+	private String TipoRemedio;
+	private LocalDate horarios;
+	private Integer quantidadeDiaria;
+	private Integer armazenamentoTotal;
 
 }
