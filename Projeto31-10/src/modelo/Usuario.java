@@ -4,11 +4,11 @@ import java.time.LocalDate;
 
 public class Usuario {
 	private String nome;
-	private char sexo;
+	private String sexo;
 	private LocalDate nascimento;
 	private String endereço;
 	private Integer telefone;
-	private char tipoSanguineo;
+	private String tipoSanguineo;
 	private String contatoFamilia;
 	
 	public String getNome() {
@@ -17,10 +17,10 @@ public class Usuario {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public char getSexo() {
-		return sexo;
+	public void getSexo() {
+		this.sexo = sexo;
 	}
-	public void setSexo(char sexo) {
+	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
 	public LocalDate getNascimento() {
@@ -41,10 +41,10 @@ public class Usuario {
 	public void setTelefone(Integer telefone) {
 		this.telefone = telefone;
 	}
-	public char getTipoSanguineo() {
-		return tipoSanguineo;
+	public void getTipoSanguineo() {
+		this.tipoSanguineo = tipoSanguineo;
 	}
-	public void setTipoSanguineo(char tipoSanguineo) {
+	public void setTipoSanguineo(String tipoSanguineo) {
 		this.tipoSanguineo = tipoSanguineo;
 	}
 	public String getContatoFamilia() {
