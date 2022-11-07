@@ -1,8 +1,8 @@
-package detalheConsulta;
+package controle;
 
 import java.util.ArrayList;
 
-import consulta.Consulta;
+import modelo.Consulta;
 
 public class DetalheConsultaDAO {
 

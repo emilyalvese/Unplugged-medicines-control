@@ -1,4 +1,4 @@
-package consulta;
+package modelo;
 
 import java.time.LocalDate;
 

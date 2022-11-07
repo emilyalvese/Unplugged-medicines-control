@@ -1,4 +1,4 @@
-package interfaceSistema;
+package visao;
 
 public class InterfaceSistema {
 	public void mostarTelaPrincipal(){

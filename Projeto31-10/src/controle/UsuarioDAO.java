@@ -1,4 +1,4 @@
-package interfaceSistema;
+package controle;
 
 public class UsuarioDAO {
 	public boolean cadastrarUsuario() {

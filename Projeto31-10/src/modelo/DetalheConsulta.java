@@ -1,6 +1,4 @@
-package detalheConsulta;
-
-import consulta.Consulta;
+package modelo;
 
 public class DetalheConsulta extends Consulta {
 

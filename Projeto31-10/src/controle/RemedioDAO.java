@@ -1,6 +1,8 @@
-package remedio;
+package controle;
 
 import java.util.ArrayList;
+
+import modelo.Remedio;
 
 public class RemedioDAO {
 	
