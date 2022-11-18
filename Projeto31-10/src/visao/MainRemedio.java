@@ -31,7 +31,7 @@ public class MainRemedio {
 		String mesVal = leitura.nextLine();
 		System.out.println("Insira o ano:");
 		String anoVal = leitura.nextLine();
-		if (!diaVal.isEmpty() && mesVal.isEmpty() && anoVal.isEmpty()) {
+		if (!diaVal.isEmpty() && !mesVal.isEmpty() && !anoVal.isEmpty()) {
 			int ano = Integer.parseInt(anoVal);
 			int mes = Integer.parseInt(mesVal);
 			int dia = Integer.parseInt(diaVal);
@@ -45,6 +45,31 @@ public class MainRemedio {
 			remedio.setMarca(Tipo);
 		}
 		
+		System.out.println("Horário para tomá-lo:");
+		System.out.println("Informe a hora:");
+		String horaRemedio = leitura.nextLine();
+		System.out.println("Informe o minuto:");
+		String minutoRemedio = leitura.nextLine();
+		if (!horaRemedio.isEmpty() && !minutoRemedio.isEmpty()) {
+			int hora = Integer.parseInt(horaRemedio);
+			int minuto = Integer.parseInt(minutoRemedio);
+			LocalDate horario = LocalDate.ofYearDay(hora, minuto);
+			remedio.setHorarios(horario);
+		}
+		
+		System.out.println("Quantidade diaria:");
+		String quantidade = leitura.nextLine();
+		if (!quantidade.isEmpty()) {
+			int quant = Integer.parseInt(quantidade);
+			remedio.setQuantidadeDiaria(quant);
+		}
+		
+		System.out.println("Quantidade total do medicamento que você possui:");
+		String estoque = leitura.nextLine();
+		if (!estoque.isEmpty()) {
+			int armazenamento = Integer.parseInt(estoque);
+			remedio.setArmazenamentoTotal(armazenamento);
+		}
 
 	}
 
