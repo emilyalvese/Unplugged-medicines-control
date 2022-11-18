@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 public class Consulta {
 	private LocalDate dataConsulta;
-	private LocalDate dataSemana;
 
 	public LocalDate getDataConsulta() {
 		return dataConsulta;
@@ -14,12 +13,6 @@ public class Consulta {
 		this.dataConsulta = dataConsulta;
 	}
 
-	public LocalDate getDataSemana() {
-		return dataSemana;
-	}
 
-	public void setDataSemana(LocalDate dataSemana) {
-		this.dataSemana = dataSemana;
-	}
 
 }
