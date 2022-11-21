@@ -1,18 +1,56 @@
 package controle;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import modelo.Consulta;
+import modelo.Usuario;
+
 public class UsuarioDAO {
-	public boolean cadastrarUsuario() {
-		
+
+	private ArrayList<Usuario> tabelaUsuarios;
+
+	// CONSTRUCTOR TO INITIALIZE THE TABLE OF CONSULTAS
+	public UsuarioDAO() {
+		this.tabelaUsuarios = new ArrayList<>();
+	}
+
+	// INSERT
+	public boolean cadastraUsuario(Usuario u) {
+		if (u != null) {
+			tabelaUsuarios.add(u);
+		}
 		return false;
 	}
-	
-	public void mostrarUsuario() {
-		
-		
+
+	// DELETE
+	public boolean deletar(Usuario u, String nome) {
+		for (Usuario usuario : tabelaUsuarios) {
+			if (usuario.getNome() == nome) {
+				tabelaUsuarios.remove(usuario);
+				return true;
+			}
+		}
+		return false;
+
 	}
-	
-	public void atualizarUsuario() {
-		
+
+	// UPDATE
+	public boolean atualizaUsuario(Usuario u, String nome) {
+		for (Usuario usuario : tabelaUsuarios) {
+			if (usuario.getNome() == nome) {
+				tabelaUsuarios.remove(usuario);
+				return true;
+			}
+
+		}
+		return false;
+	}
+
+	// SELECT ALL
+	public ArrayList<Usuario> listaUsuarios() {
+		return this.tabelaUsuarios;
 	}
 
 }

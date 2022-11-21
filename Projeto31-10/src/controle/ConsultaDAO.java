@@ -8,7 +8,7 @@ import modelo.Consulta;
 
 public class ConsultaDAO {
 
-	private ArrayList<Consulta> tabelaConsultas;
+	private static ArrayList<Consulta> tabelaConsultas;
 
 	// CONSTRUCTOR TO INITIALIZE THE TABLE OF CONSULTAS
 	public ConsultaDAO() {
