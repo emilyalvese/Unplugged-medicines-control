@@ -3,49 +3,54 @@ package controle;
 import java.util.ArrayList;
 
 import modelo.DetalheConsulta;
+import modelo.IDetalheConsultaDAO;
 
-public class DetalheConsultaDAO {
+public class DetalheConsultaDAO implements IDetalheConsultaDAO {
 
 	private static ArrayList<DetalheConsulta> tabelaDetalheConsultas;
+	private static DetalheConsultaDAO instancia;
 
-	public DetalheConsultaDAO() {
-		tabelaDetalheConsultas = new ArrayList<>();
+	private DetalheConsultaDAO() {
+
 	}
 
-	// INSERT
-	public boolean cadastraDetalheConsulta(DetalheConsulta c) {
+	public static DetalheConsultaDAO getInstancia() {
+		if (instancia == null) {
+			instancia = new DetalheConsultaDAO();
+			tabelaDetalheConsultas = new ArrayList<>();
+		}
+		return instancia;
+	}
+
+	@Override
+	public boolean inserir(DetalheConsulta c) {
 		if (c != null) {
-			tabelaDetalheConsultas.add((DetalheConsulta) c);
+			tabelaDetalheConsultas.add(c);
+			return true;
 		}
 		return false;
 	}
 
-	// DELETE
-	public boolean deletar(DetalheConsulta c, String tipoConsulta) {
-		for (DetalheConsulta tipoConsulta1 : tabelaDetalheConsultas) {
-			if (tipoConsulta1.getTipoConsulta() == tipoConsulta) {
-				tabelaDetalheConsultas.remove(tipoConsulta1);
-				return true;
-			}
-		}
+	@Override
+	public boolean alterar(DetalheConsulta c, String k) {
+for (DetalheConsulta detalheConsulta : tabelaDetalheConsultas) {
+	if(detalheConsulta.getTipoConsulta().equals(c)){
+		
+	}
+}
 		return false;
 	}
 
-	// UPDATE
-	public boolean atualizaDetalheConsulta(DetalheConsulta c, String tipoConsulta) {
-		for (DetalheConsulta tipoConsulta1 : tabelaDetalheConsultas) {
-			if (tipoConsulta1.getTipoConsulta() == tipoConsulta) {
-				tipoConsulta1.setTipoConsulta(c.getTipoConsulta());
-				tipoConsulta1.setTipoConsulta(c.getMotivoConsulta());
-				tipoConsulta1.setTipoConsulta(c.getLocalConsulta());
-				tipoConsulta1.setTipoConsulta(c.getFeedbackConsulta());
-				return true;
-			}
-		}
+	@Override
+	public boolean deletar(DetalheConsulta c, String j) {
+		// TODO Auto-generated method stub
 		return false;
 	}
 
-	public ArrayList<DetalheConsulta> listarDetalheConsultas() {
-		return this.tabelaDetalheConsultas;
+	@Override
+	public ArrayList<DetalheConsulta> listarConsultas() {
+		// TODO Auto-generated method stub
+		return null;
 	}
+
 }
