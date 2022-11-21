@@ -16,6 +16,9 @@ public class ConsultaDAO implements IConsultaDAO{
 	private ConsultaDAO() {
 	}
 
+	
+	///criar método get tabelaConsultas para poder verificar se existe usuário no banco ou não
+	
 	public static ConsultaDAO getInstancia() {
 
 		if (instancia == null) {
