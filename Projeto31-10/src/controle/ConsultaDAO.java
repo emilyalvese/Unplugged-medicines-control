@@ -5,53 +5,67 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modelo.Consulta;
+import modelo.IConsultaDAO;
+import modelo.Usuario;
 
-public class ConsultaDAO {
+public class ConsultaDAO implements IConsultaDAO{
 
 	private static ArrayList<Consulta> tabelaConsultas;
-
-	// CONSTRUCTOR TO INITIALIZE THE TABLE OF CONSULTAS
-	public ConsultaDAO() {
-		tabelaConsultas = new ArrayList<>();
+	private static ConsultaDAO instancia; 
+	
+	private ConsultaDAO() {
 	}
 
-	// INSERT
-	public boolean cadastraConsulta(Consulta c) {
+	public static ConsultaDAO getInstancia() {
+
+		if (instancia == null) {
+			instancia = new ConsultaDAO();
+			tabelaConsultas = new ArrayList<>();
+		}
+		return instancia;
+	}
+
+	@Override
+	public boolean inserir(Consulta c) {
+
 		if (c != null) {
 			tabelaConsultas.add(c);
+			return true;
 		}
+
 		return false;
 	}
 
-	// DELETE
+	@Override
+	public boolean alterar(Consulta c, LocalDate dataConsulta) {
+		for (Consulta consulta : tabelaConsultas) {
+			if (consulta.getDataConsulta().equals(dataConsulta)) {
+				
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	@Override
 	public boolean deletar(Consulta c, LocalDate dataConsulta) {
 		for (Consulta consulta : tabelaConsultas) {
-			if (consulta.getDataConsulta() == dataConsulta) {
+			if (consulta.getDataConsulta().equals(dataConsulta)) {
 				tabelaConsultas.remove(consulta);
 				return true;
 			}
 		}
-		return false;
 
-	}
-
-	// UPDATE
-	
-	///Corrigir todos os updates de todos os DAOS para setarem os novos valores
-	public boolean atualizaConsulta(Consulta c, LocalDate dataConsulta) {
-		for (Consulta consulta : tabelaConsultas) {
-			if (consulta.getDataConsulta() == dataConsulta) {
-				consulta.setDataConsulta(c.getDataConsulta());
-				return true;
-			}
-
-		}
 		return false;
 	}
 
-	// SELECT ALL
+	@Override
 	public ArrayList<Consulta> listaConsultas() {
-		return this.tabelaConsultas;
+		return tabelaConsultas;
 	}
+
+	
 
 }
+
