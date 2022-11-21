@@ -5,61 +5,64 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modelo.Consulta;
+import modelo.IUsuarioDAO;
 import modelo.Usuario;
 
-public class UsuarioDAO {
+public class UsuarioDAO implements IUsuarioDAO {
 
 	private static ArrayList<Usuario> tabelaUsuarios;
+	private static UsuarioDAO instancia;
 
-	// CONSTRUCTOR TO INITIALIZE THE TABLE OF CONSULTAS
-	public UsuarioDAO() {
-		tabelaUsuarios = new ArrayList<>();
+	private UsuarioDAO() {
 	}
 
-	// INSERT
-	public boolean cadastraUsuario(Usuario u) {
+	public static UsuarioDAO getInstancia() {
+
+		if (instancia == null) {
+			instancia = new UsuarioDAO();
+			tabelaUsuarios = new ArrayList<>();
+		}
+		return instancia;
+	}
+
+	@Override
+	public boolean inserir(Usuario u) {
+
 		if (u != null) {
 			tabelaUsuarios.add(u);
+			return true;
 		}
+
 		return false;
 	}
 
-	// DELETE
-	public boolean deletar(Usuario u, String nome) {
+	@Override
+	public boolean alterar(Usuario u, String email) {
 		for (Usuario usuario : tabelaUsuarios) {
-			if (usuario.getNome() == nome) {
+			if (usuario.getEmail().equals(email)) {
+				usuario.setEmail(u.getEmail());
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	@Override
+	public boolean deletar(Usuario u, String email) {
+		for (Usuario usuario : tabelaUsuarios) {
+			if (usuario.getEmail().equals(email)) {
 				tabelaUsuarios.remove(usuario);
 				return true;
 			}
 		}
-		return false;
 
-	}
-
-	// UPDATE
-	public boolean atualizaUsuario(Usuario u, String nome) {
-		for (Usuario usuario : tabelaUsuarios) {
-			if (usuario.getNome() == nome) {
-				tabelaUsuarios.remove(usuario);
-				usuario.setNome(u.getNome());
-				usuario.setSexo(u.getSexo());
-				usuario.setNascimento(u.getNascimento());
-				usuario.setEndereço(u.getEndereço());
-				usuario.setContatoFamilia(u.getContatoFamilia());
-				usuario.setTipoSanguineo(u.getTipoSanguineo());
-				usuario.setTelefone(u.getTelefone());
-				
-				
-				return true;
-			}
-
-		}
 		return false;
 	}
 
-	// SELECT ALL
-	public ArrayList<Usuario> listaUsuarios() {
-		return this.tabelaUsuarios;
+	@Override
+	public ArrayList<Usuario> listarUsuarios() {
+		return tabelaUsuarios;
 	}
 
 }
