@@ -36,10 +36,12 @@ public class ConsultaDAO {
 	}
 
 	// UPDATE
+	
+	///Corrigir todos os updates de todos os DAOS para setarem os novos valores
 	public boolean atualizaConsulta(Consulta c, LocalDate dataConsulta) {
 		for (Consulta consulta : tabelaConsultas) {
 			if (consulta.getDataConsulta() == dataConsulta) {
-				tabelaConsultas.remove(consulta);
+				consulta.setDataConsulta(c.getDataConsulta());
 				return true;
 			}
 
