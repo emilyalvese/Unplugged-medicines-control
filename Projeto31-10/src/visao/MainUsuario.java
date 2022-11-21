@@ -9,10 +9,10 @@ public class MainUsuario {
 
 	public static void main(String[] args) {
 
-		Usuario pessoa = new Usuario ();
-		
+		Usuario pessoa = new Usuario();
+
 		Scanner leitura = new Scanner(System.in);
-		
+
 		System.out.println("Insira seu nome: ");
 		String nome = leitura.nextLine();
 		if (!nome.isEmpty()) {
@@ -20,10 +20,10 @@ public class MainUsuario {
 		}
 		System.out.println("Informe seu sexo: ");
 		String sexo = leitura.nextLine();
-		
 		if (!sexo.isEmpty()) {
 			pessoa.setSexo(sexo);
 		}
+		
 		System.out.println("Informe sua data de nascimento");
 		System.out.println("Insira o dia:");
 		String diaVal = leitura.nextLine();
@@ -41,28 +41,29 @@ public class MainUsuario {
 		System.out.println("Informe seu endereço: ");
 		String endereco = leitura.nextLine();
 		if (!endereco.isEmpty()) {
-			pessoa.setEndereço(endereco);;
+			pessoa.setEndereço(endereco);
+			;
 		}
-		
+
 		System.out.println("Informe seu telefone: ");
 		String telefone = leitura.nextLine();
 		if (!telefone.isEmpty()) {
-			pessoa.setTelefone(Integer.valueOf(telefone));;
+			pessoa.setTelefone(Integer.valueOf(telefone));
 		}
-		
-		
-	
+
 		System.out.println("Informe seu tipo sanguíneo: ");
 		String tipoSanguineo = leitura.nextLine();
 		if (!tipoSanguineo.isEmpty()) {
-			pessoa.setTipoSanguineo(tipoSanguineo);;
+			pessoa.setTipoSanguineo(tipoSanguineo);
+			
 		}
 		System.out.println("Informe o contato de algum familiar: ");
 		String contatoFamilia = leitura.nextLine();
 		if (!contatoFamilia.isEmpty()) {
-			pessoa.setContatoFamilia(contatoFamilia);;
-		}		
-		
+			pessoa.setContatoFamilia(contatoFamilia);
+			;
+		}
+
 	}
 
 }

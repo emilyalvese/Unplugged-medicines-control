@@ -9,7 +9,7 @@ import modelo.Usuario;
 
 public class UsuarioDAO {
 
-	private ArrayList<Usuario> tabelaUsuarios;
+	private static ArrayList<Usuario> tabelaUsuarios;
 
 	// CONSTRUCTOR TO INITIALIZE THE TABLE OF CONSULTAS
 	public UsuarioDAO() {
@@ -41,6 +41,15 @@ public class UsuarioDAO {
 		for (Usuario usuario : tabelaUsuarios) {
 			if (usuario.getNome() == nome) {
 				tabelaUsuarios.remove(usuario);
+				usuario.setNome(u.getNome());
+				usuario.setSexo(u.getSexo());
+				usuario.setNascimento(u.getNascimento());
+				usuario.setEndereço(u.getEndereço());
+				usuario.setContatoFamilia(u.getContatoFamilia());
+				usuario.setTipoSanguineo(u.getTipoSanguineo());
+				usuario.setTelefone(u.getTelefone());
+				
+				
 				return true;
 			}
 
