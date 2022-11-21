@@ -7,8 +7,8 @@ import modelo.Usuario;
 
 public class MainUsuario {
 
-	public static void main(String[] args) {
-
+	
+	public void executar () {
 		Usuario pessoa = new Usuario();
 
 		Scanner leitura = new Scanner(System.in);
@@ -17,6 +17,12 @@ public class MainUsuario {
 		String nome = leitura.nextLine();
 		if (!nome.isEmpty()) {
 			pessoa.setNome(nome);
+		}
+		
+		System.out.println("Insira seu e-mail");
+		String email = leitura.nextLine();
+		if(!email.isEmpty()) {
+			pessoa.setEmail(email);
 		}
 		System.out.println("Informe seu sexo: ");
 		String sexo = leitura.nextLine();
@@ -64,6 +70,9 @@ public class MainUsuario {
 			;
 		}
 
+	}		
 	}
+	
+	
+	
 
-}
