@@ -32,7 +32,13 @@ public class RemedioDAO {
 	public boolean atualizarRemedio(Remedio r, String nome) {
 		for (Remedio remedio : tabelaRemedio) {
 			if (remedio.getNome() == nome) {
-				tabelaRemedio.remove(remedio);
+				remedio.setNome(r.getNome());
+				remedio.setMarca(r.getMarca());
+				remedio.setValidade(r.getValidade());
+				remedio.setTipoRemedio(r.getTipoRemedio());
+				remedio.setHorarios(r.getHorarios());
+				remedio.setQuantidadeDiaria(r.getQuantidadeDiaria());
+				remedio.setArmazenamentoTotal(r.getArmazenamentoTotal());
 				return true;
 			}
 		}
