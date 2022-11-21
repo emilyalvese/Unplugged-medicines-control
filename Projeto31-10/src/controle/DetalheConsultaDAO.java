@@ -6,10 +6,10 @@ import modelo.DetalheConsulta;
 
 public class DetalheConsultaDAO {
 
-	private ArrayList<DetalheConsulta> tabelaDetalheConsultas;
+	private static ArrayList<DetalheConsulta> tabelaDetalheConsultas;
 
 	public DetalheConsultaDAO() {
-		this.tabelaDetalheConsultas = new ArrayList<>();
+		tabelaDetalheConsultas = new ArrayList<>();
 	}
 
 	// INSERT
