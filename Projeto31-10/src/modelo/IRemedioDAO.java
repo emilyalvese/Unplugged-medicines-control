@@ -10,6 +10,6 @@ public interface IRemedioDAO {
 
 	public boolean atualizarRemedio (Remedio r, String nome);
 	
-	public ArrayList<Remedio> consultaRemedios();S
+	public ArrayList<Remedio> consultaRemedios();
 	
 }
