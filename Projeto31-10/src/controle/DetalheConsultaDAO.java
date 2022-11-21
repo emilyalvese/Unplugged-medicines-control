@@ -32,25 +32,34 @@ public class DetalheConsultaDAO implements IDetalheConsultaDAO {
 	}
 
 	@Override
-	public boolean alterar(DetalheConsulta c, String k) {
-for (DetalheConsulta detalheConsulta : tabelaDetalheConsultas) {
-	if(detalheConsulta.getTipoConsulta().equals(c)){
-		
-	}
-}
+	public boolean alterar(DetalheConsulta c, String motivoConsulta) {
+		for (DetalheConsulta detalheConsulta : tabelaDetalheConsultas) {
+			if (detalheConsulta.getTipoConsulta().equals(motivoConsulta)) {
+
+				detalheConsulta.setDataConsulta(c.getDataConsulta());
+				detalheConsulta.setFeedbackConsulta(c.getFeedbackConsulta());
+				detalheConsulta.setLocalConsulta(c.getLocalConsulta());
+				detalheConsulta.setMotivoConsulta(c.getMotivoConsulta());
+				return true;
+			}
+		}
 		return false;
 	}
 
 	@Override
-	public boolean deletar(DetalheConsulta c, String j) {
-		// TODO Auto-generated method stub
+	public boolean deletar(DetalheConsulta c, String motivoConsulta) {
+		for (DetalheConsulta detalheConsulta : tabelaDetalheConsultas) {
+			if (detalheConsulta.getMotivoConsulta().equals(motivoConsulta)) {
+				tabelaDetalheConsultas.remove(detalheConsulta);
+				return true;
+			}
+		}
 		return false;
 	}
 
 	@Override
 	public ArrayList<DetalheConsulta> listarConsultas() {
-		// TODO Auto-generated method stub
-		return null;
+		return tabelaDetalheConsultas;
 	}
 
 }

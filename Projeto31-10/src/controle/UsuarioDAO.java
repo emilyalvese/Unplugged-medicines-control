@@ -1,10 +1,7 @@
 package controle;
 
 import java.util.ArrayList;
-<<<<<<< HEAD
 
-=======
->>>>>>> main
 import modelo.IUsuarioDAO;
 import modelo.Usuario;
 
