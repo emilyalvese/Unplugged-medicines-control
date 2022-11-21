@@ -12,7 +12,7 @@ public class ConsultaDAO {
 
 	// CONSTRUCTOR TO INITIALIZE THE TABLE OF CONSULTAS
 	public ConsultaDAO() {
-		this.tabelaConsultas = new ArrayList<>();
+		tabelaConsultas = new ArrayList<>();
 	}
 
 	// INSERT

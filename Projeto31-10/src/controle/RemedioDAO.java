@@ -8,7 +8,7 @@ public class RemedioDAO {
 	private static ArrayList<Remedio> tabelaRemedio;
 	
 	public RemedioDAO() {
-		this.tabelaRemedio = new ArrayList<>();
+		tabelaRemedio = new ArrayList<>();
 	}
 	
 	
