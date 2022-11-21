@@ -1,10 +1,6 @@
 package controle;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
-
-import modelo.Consulta;
 import modelo.IUsuarioDAO;
 import modelo.Usuario;
 
