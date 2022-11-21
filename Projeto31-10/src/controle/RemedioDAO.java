@@ -5,7 +5,7 @@ import modelo.Remedio;
 
 public class RemedioDAO {
 	
-	private ArrayList<Remedio> tabelaRemedio;
+	private static ArrayList<Remedio> tabelaRemedio;
 	
 	public RemedioDAO() {
 		this.tabelaRemedio = new ArrayList<>();
