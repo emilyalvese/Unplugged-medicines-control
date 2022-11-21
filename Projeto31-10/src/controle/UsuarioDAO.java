@@ -13,7 +13,7 @@ public class UsuarioDAO {
 
 	// CONSTRUCTOR TO INITIALIZE THE TABLE OF CONSULTAS
 	public UsuarioDAO() {
-		this.tabelaUsuarios = new ArrayList<>();
+		tabelaUsuarios = new ArrayList<>();
 	}
 
 	// INSERT
