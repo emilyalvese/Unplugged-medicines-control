@@ -1,8 +1,10 @@
 package visao;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Scanner;
 
+import controle.RemedioDAO;
 import controle.UsuarioDAO;
 import modelo.Consulta;
 import modelo.DetalheConsulta;
@@ -16,9 +18,20 @@ public class InterfaceSistema {
 		Scanner leitura = new Scanner(System.in);
 		UsuarioDAO bancoUsuario = UsuarioDAO.getInstancia();
 
+		System.out.println("Bem-Vindo ao Unplugged Medicines Control, é um prazer servir você");
+		System.out.println("---------------------------------------------------------------");
+
 		while (opcaoSwitch != 0) {
-			System.out.println("Bem-Vindo ao Unplugged Medicines Control, é um prazer servir você");
-			System.out.println("---------------------------------------------------------------");
+			System.out.println("Menu da Home Page");
+			System.out.println("----------------------------");
+			System.out.println("--- 0 SAIR ---");
+			System.out.println("--- 1 CADASTRAR REMÉDIO ---");
+			System.out.println("--- 2 CADASTRAR CONSULTA ---");
+			System.out.println("--- 3 CADASTRAR DETALHES DA SUA CONSULTA (AVALIAÇÕES EM GERAL) ---");
+			System.out.println("--- 4 LISTAR USUARIOS CADASTRADOS ---");
+			System.out.println("--- 5 LISTAR CONSULTAS EXISTENTES ---");
+			System.out.println("--- 6 LISTAR REMÉDIOS EXISTENTES ---");
+			System.out.println("--- 7 LISTAR AVALIAÇÕES DE CONSULTAS EXISTENTES ---");
 
 			opcaoSwitch = Integer.valueOf(leitura.nextLine());
 
@@ -38,8 +51,11 @@ public class InterfaceSistema {
 				}
 			}
 			case 2: {
-				System.out.println("Colcoar aqui a tela de cadastro");
-			}
+				ArrayList<Usuario> lista = bancoUsuario.listarUsuarios();
+				for (Usuario usuario : lista) {
+					System.out.println("Nome:" + usuario.getNome());
+				}
+			 }
 			}
 		}
 
@@ -47,6 +63,7 @@ public class InterfaceSistema {
 
 	public static void cadastroRemedio() {
 		Scanner leitura = new Scanner(System.in);
+		RemedioDAO bancoRemedio = RemedioDAO.getInstancia();
 
 		Remedio remedio = new Remedio();
 
@@ -108,6 +125,8 @@ public class InterfaceSistema {
 			int armazenamento = Integer.parseInt(estoque);
 			remedio.setArmazenamentoTotal(armazenamento);
 		}
+		bancoRemedio.cadastrarRemedio(remedio);
+
 	}
 
 	public static void cadastroDetalhesConsulta() {
@@ -170,6 +189,7 @@ public class InterfaceSistema {
 		Usuario pessoa = new Usuario();
 
 		Scanner leitura = new Scanner(System.in);
+		UsuarioDAO bancoUsuario = UsuarioDAO.getInstancia();
 
 		System.out.println("Insira seu nome: ");
 		String nome = leitura.nextLine();
@@ -227,6 +247,6 @@ public class InterfaceSistema {
 			pessoa.setContatoFamilia(contatoFamilia);
 			;
 		}
-
+		bancoUsuario.inserir(pessoa);
 	}
 }
