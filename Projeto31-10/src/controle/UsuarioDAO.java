@@ -13,6 +13,12 @@ public class UsuarioDAO implements IUsuarioDAO {
 	private UsuarioDAO() {
 	}
 
+	
+	///criar método get tabelaConsultas para poder verificar se existe usuário no banco ou não
+	
+
+	
+	
 	public static UsuarioDAO getInstancia() {
 
 		if (instancia == null) {
