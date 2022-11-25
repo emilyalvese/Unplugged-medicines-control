@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import controle.ConsultaDAO;
+import controle.DetalheConsultaDAO;
 import controle.RemedioDAO;
 import controle.UsuarioDAO;
 import modelo.Consulta;
@@ -25,13 +27,15 @@ public class InterfaceSistema {
 			System.out.println("Menu da Home Page");
 			System.out.println("----------------------------");
 			System.out.println("--- 0 SAIR ---");
-			System.out.println("--- 1 CADASTRAR REMÉDIO ---");
+			/// arrumar pq a opção 1 verifica os usuários cadastrados ou não
+			System.out.println("--- 1 CADASTRAR USUÁRIOS ---");
 			System.out.println("--- 2 CADASTRAR CONSULTA ---");
 			System.out.println("--- 3 CADASTRAR DETALHES DA SUA CONSULTA (AVALIAÇÕES EM GERAL) ---");
-			System.out.println("--- 4 LISTAR USUARIOS CADASTRADOS ---");
-			System.out.println("--- 5 LISTAR CONSULTAS EXISTENTES ---");
-			System.out.println("--- 6 LISTAR REMÉDIOS EXISTENTES ---");
-			System.out.println("--- 7 LISTAR AVALIAÇÕES DE CONSULTAS EXISTENTES ---");
+			System.out.println("--- 4 CADASTRAR REMÉDIO ---");
+			System.out.println("--- 5 LISTAR USUARIOS CADASTRADOS ---");
+			System.out.println("--- 6 LISTAR CONSULTAS EXISTENTES ---");
+			System.out.println("--- 7 LISTAR REMÉDIOS EXISTENTES ---");
+			System.out.println("--- 8 LISTAR AVALIAÇÕES DE CONSULTAS EXISTENTES ---");
 
 			opcaoSwitch = Integer.valueOf(leitura.nextLine());
 
@@ -40,25 +44,64 @@ public class InterfaceSistema {
 				break;
 			}
 
+			// Se o usuario já existe, mostra a tela da home, caso não, cria um usuário novo
 			case 1: {
 				Usuario u = new Usuario();
 				if (bancoUsuario.listarUsuarios().isEmpty()) {
 					System.out.println("Pelo visto você é novo, vamos efetuar seu cadastro!");
 					cadastroUsuario();
+					continue;
 				} else {
 					System.out.println("Bem vindo" + u.getNome() + "é um prazer receber você! ");
 					continue;
 				}
 			}
+			/// Cadastro das consultas
 			case 2: {
-				ArrayList<Usuario> lista = bancoUsuario.listarUsuarios();
-				for (Usuario usuario : lista) {
-					System.out.println("Nome:" + usuario.getNome());
-				}
-			 }
+				cadastroConsulta();
+				continue;
+			}
+
+			case 3: {
+				cadastroDetalhesConsulta();
+				continue;
+			}
+			case 4: {
+				cadastroRemedio();
+				continue;
+			}
+
+			case 5: {
+
+				listaUsuarios();
+				// listar usuários cadastrados
+				continue;
+			}
+			case 6: {
+				// listar as consultas existentes
+			}
+
+			case 7: {
+				// listar remédios existentes
+			}
+
+			case 8: {
+				// listar feedbacks de consultas existentes
+			}
 			}
 		}
 
+	}
+
+	public static void listaUsuarios() {
+		UsuarioDAO usuarioBanco = UsuarioDAO.getInstancia();
+
+		if (!usuarioBanco.usuarios().isEmpty()) {
+			usuarioBanco.listarUsuarios();
+			System.out.println("Entrou");
+		} else {
+			System.out.println("Não há usuarios cadastrados em nosso sistema.");
+		}
 	}
 
 	public static void cadastroRemedio() {
@@ -133,6 +176,7 @@ public class InterfaceSistema {
 		DetalheConsulta consulta = new DetalheConsulta();
 
 		Scanner leitura = new Scanner(System.in);
+		DetalheConsultaDAO bancoDetalheConsultas = DetalheConsultaDAO.getInstancia();
 
 		System.out.println("Insira o tipo da consulta: ");
 		String tipoConsulta = leitura.nextLine();
@@ -158,12 +202,15 @@ public class InterfaceSistema {
 			consulta.setFeedbackConsulta(feedbackConsulta);
 		}
 
+		bancoDetalheConsultas.inserir(consulta);
+
 	}
 
 	public static void cadastroConsulta() {
 		Scanner leitura = new Scanner(System.in);
 
 		Consulta consulta = new Consulta();
+		ConsultaDAO bancoConsultas = ConsultaDAO.getInstancia();
 
 		System.out.println("Dados de sua consulta ");
 
@@ -183,6 +230,7 @@ public class InterfaceSistema {
 			LocalDate data = LocalDate.of(dia, mes, ano);
 			consulta.setDataConsulta(data);
 		}
+		bancoConsultas.inserir(consulta);
 	}
 
 	public static void cadastroUsuario() {
@@ -248,5 +296,7 @@ public class InterfaceSistema {
 			;
 		}
 		bancoUsuario.inserir(pessoa);
+		System.out.println("Bem vindo " + pessoa.getNome() + "é um prazer receber você! ");
+
 	}
 }

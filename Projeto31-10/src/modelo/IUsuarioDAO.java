@@ -12,4 +12,5 @@ public interface IUsuarioDAO {
 
 	public ArrayList<Usuario> listarUsuarios();
 
+	public ArrayList<Usuario> usuarios();
 }
