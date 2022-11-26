@@ -17,11 +17,20 @@ public class UsuarioDAO implements IUsuarioDAO {
 	/// banco ou não
 
 	public ArrayList<Usuario> usuarios() {
-		if (!tabelaUsuarios.isEmpty()) {
-			for (Usuario usuario : tabelaUsuarios) {
-				usuario.getNome();
-			}
+		System.out.println("passou aqui");
+	if(!tabelaUsuarios.isEmpty()) {
+		for (Usuario usuario : tabelaUsuarios) {
+			System.out.println("-------------");
+			System.out.println("nome: "+ usuario.getNome());
+			System.out.println("E-mail: " + usuario.getEmail());
+			System.out.println("Sexo: "+ usuario.getSexo());
+			System.out.println("Telefone: " + usuario.getTelefone());
+			System.out.println("Endereço:" + usuario.getEndereço());
+			System.out.println("Tipo Sanguíneo:" + usuario.getTipoSanguineo());
+			System.out.println("Data de nascimento: "+ usuario.getNascimento());
+
 		}
+	}
 		return tabelaUsuarios;
 	}
 

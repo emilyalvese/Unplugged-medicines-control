@@ -97,8 +97,9 @@ public class InterfaceSistema {
 		UsuarioDAO usuarioBanco = UsuarioDAO.getInstancia();
 
 		if (!usuarioBanco.usuarios().isEmpty()) {
-			usuarioBanco.listarUsuarios();
 			System.out.println("Entrou");
+
+			usuarioBanco.listarUsuarios();
 		} else {
 			System.out.println("Não há usuarios cadastrados em nosso sistema.");
 		}
