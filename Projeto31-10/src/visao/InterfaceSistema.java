@@ -111,11 +111,18 @@ public class InterfaceSistema {
 		RemedioDAO remedioBanco = RemedioDAO.getInstancia();
 
 		if (!remedioBanco.remedios().isEmpty()) {
-			System.out.println("Entrou");
-
 			remedioBanco.remedios();
 		} else {
 			System.out.println("Não há remédios cadastrados em nosso sistema.");
+		}
+	}
+	
+	public static void listaConsultas() {
+		ConsultaDAO consultaBanco = ConsultaDAO.getInstancia();
+		if (!consultaBanco.consultas().isEmpty()) {
+			consultaBanco.listaConsultas();
+		} else {
+			System.out.println("Não há consultas cadastradas em nosso sistema.");
 		}
 	}
 
