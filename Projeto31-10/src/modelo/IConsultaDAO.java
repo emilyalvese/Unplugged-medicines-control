@@ -13,7 +13,7 @@ public interface IConsultaDAO {
 	
 	public ArrayList<Consulta> listaConsultas();
 
-	
+	public ArrayList<Consulta> consultas();
 	
 	
 
