@@ -16,7 +16,16 @@ public class ConsultaDAO implements IConsultaDAO{
 	private ConsultaDAO() {
 	}
 
-	
+	public ArrayList<Consulta> consultas(){
+		if (!tabelaConsultas.isEmpty()) {
+			for (Consulta consulta : tabelaConsultas) {
+				System.out.println("-------------");
+				System.out.println("Data da consulta:"+consulta.getDataConsulta());
+			}
+		}
+		
+		return tabelaConsultas;
+	}
 	
 	
 	public static ConsultaDAO getInstancia() {
