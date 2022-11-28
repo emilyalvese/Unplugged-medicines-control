@@ -13,10 +13,8 @@ public class UsuarioDAO implements IUsuarioDAO {
 	private UsuarioDAO() {
 	}
 
-	/// criar método get tabelaConsultas para poder verificar se existe usuário no
-	/// banco ou não
 
-	public ArrayList<Usuario> usuarios() {
+	public ArrayList<Usuario> usuarios() {//exemplo listagem 
 		System.out.println("passou aqui");
 	if(!tabelaUsuarios.isEmpty()) {
 		for (Usuario usuario : tabelaUsuarios) {

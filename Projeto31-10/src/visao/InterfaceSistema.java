@@ -27,8 +27,7 @@ public class InterfaceSistema {
 			System.out.println("Menu da Home Page");
 			System.out.println("----------------------------");
 			System.out.println("--- 0 SAIR ---");
-			/// arrumar pq a opção 1 verifica os usuários cadastrados ou não
-			System.out.println("--- 1 CADASTRAR USUÁRIOS ---");
+						System.out.println("--- 1 CADASTRAR USUÁRIOS ---");
 			System.out.println("--- 2 CADASTRAR CONSULTA ---");
 			System.out.println("--- 3 CADASTRAR DETALHES DA SUA CONSULTA (AVALIAÇÕES EM GERAL) ---");
 			System.out.println("--- 4 CADASTRAR REMÉDIO ---");
@@ -78,10 +77,13 @@ public class InterfaceSistema {
 				continue;
 			}
 			case 6: {
+			
 				// listar as consultas existentes
 			}
 
 			case 7: {
+				listaRemedio();
+				continue;
 				// listar remédios existentes
 			}
 
@@ -102,6 +104,18 @@ public class InterfaceSistema {
 			usuarioBanco.listarUsuarios();
 		} else {
 			System.out.println("Não há usuarios cadastrados em nosso sistema.");
+		}
+	}
+
+	public static void listaRemedio() {
+		RemedioDAO remedioBanco = RemedioDAO.getInstancia();
+
+		if (!remedioBanco.remedios().isEmpty()) {
+			System.out.println("Entrou");
+
+			remedioBanco.remedios();
+		} else {
+			System.out.println("Não há remédios cadastrados em nosso sistema.");
 		}
 	}
 

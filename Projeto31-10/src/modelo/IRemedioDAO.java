@@ -12,4 +12,5 @@ public interface IRemedioDAO {
 	
 	public ArrayList<Remedio> consultaRemedios();
 	
+	public ArrayList<Remedio> remedios();
 }

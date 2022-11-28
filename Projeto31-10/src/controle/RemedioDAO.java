@@ -3,6 +3,7 @@ package controle;
 import java.util.ArrayList;
 import modelo.IRemedioDAO;
 import modelo.Remedio;
+import modelo.Usuario;
 
 public class RemedioDAO  implements IRemedioDAO {
 	
@@ -13,6 +14,24 @@ public class RemedioDAO  implements IRemedioDAO {
 		
 	}
 	
+	
+	public ArrayList<Remedio> remedios() {//exemplo listagem 
+		System.out.println("passou aqui");
+	if(!tabelaRemedio.isEmpty()) {
+		for (Remedio remedio : tabelaRemedio) {
+			System.out.println("-------------");
+			System.out.println("nome: "+ remedio.getNome());
+			System.out.println("Marca: " + remedio.getMarca());
+			System.out.println("Validade: "+ remedio.getValidade());
+			System.out.println("Tipo do remedio: " + remedio.getTipoRemedio());
+			System.out.println("Horários:" + remedio.getHorarios());
+			System.out.println("Quantidade diária:" + remedio.getQuantidadeDiaria());
+			System.out.println("Armazenamento total: "+ remedio.getArmazenamentoTotal());
+
+		}
+	}
+		return tabelaRemedio;
+	}
 	public static RemedioDAO getInstancia() {
 		if (instancia == null) {
 			instancia = new RemedioDAO();
