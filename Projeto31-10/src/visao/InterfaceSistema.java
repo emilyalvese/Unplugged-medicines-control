@@ -110,7 +110,7 @@ public class InterfaceSistema {
 					System.out.println("---------------------------------------------------------------");
 
 				} else {
-					// listar as consultas existentes
+					listaConsultas();
 
 				}
 				continue;
