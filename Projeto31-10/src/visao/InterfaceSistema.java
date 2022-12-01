@@ -1,6 +1,7 @@
 package visao;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -27,7 +28,7 @@ public class InterfaceSistema {
 			System.out.println("Menu da Home Page");
 			System.out.println("----------------------------");
 			System.out.println("--- 0 SAIR ---");
-						System.out.println("--- 1 CADASTRAR USUÁRIOS ---");
+			System.out.println("--- 1 CADASTRAR USUÁRIOS ---");
 			System.out.println("--- 2 CADASTRAR CONSULTA ---");
 			System.out.println("--- 3 CADASTRAR DETALHES DA SUA CONSULTA (AVALIAÇÕES EM GERAL) ---");
 			System.out.println("--- 4 CADASTRAR REMÉDIO ---");
@@ -51,46 +52,98 @@ public class InterfaceSistema {
 					cadastroUsuario();
 					continue;
 				} else {
-					System.out.println("Bem vindo" + u.getNome() + "é um prazer receber você! ");
+					System.out.println("Bem vindo(a) " + u.getNome() + " é um prazer receber você! ");
 					continue;
 				}
 			}
 			/// Cadastro das consultas
 			case 2: {
-				cadastroConsulta();
+				if (bancoUsuario.listarUsuarios().isEmpty()) {
+					System.out.println(
+							"Apenas usuários cadastrados podem realizar esta ação. Por favor se cadastre selecionando a opção 1");
+					System.out.println("---------------------------------------------------------------");
+
+				} else {
+					cadastroConsulta();
+
+				}
 				continue;
 			}
 
 			case 3: {
-				cadastroDetalhesConsulta();
+				if (bancoUsuario.listarUsuarios().isEmpty()) {
+					System.out.println("Apenas usuários cadastrados podem realizar esta ação.");
+					System.out.println("---------------------------------------------------------------");
+
+				} else {
+					cadastroDetalhesConsulta();
+				}
 				continue;
 			}
 			case 4: {
-				cadastroRemedio();
+				if (bancoUsuario.listarUsuarios().isEmpty()) {
+					System.out.println("Apenas usuários cadastrados podem realizar esta ação.");
+					System.out.println("---------------------------------------------------------------");
+
+				} else {
+					cadastroRemedio();
+				}
+
 				continue;
 			}
 
 			case 5: {
+				if (bancoUsuario.listarUsuarios().isEmpty()) {
+					System.out.println("Apenas usuários cadastrados podem realizar esta ação.");
+					System.out.println("---------------------------------------------------------------");
 
-				listaUsuarios();
+				} else {
+
+					listaUsuarios();
+				}
 				// listar usuários cadastrados
 				continue;
 			}
 			case 6: {
-			
-				// listar as consultas existentes
+				if (bancoUsuario.listarUsuarios().isEmpty()) {
+					System.out.println("Apenas usuários cadastrados podem realizar esta ação.");
+					System.out.println("---------------------------------------------------------------");
+
+				} else {
+					// listar as consultas existentes
+
+				}
+				continue;
 			}
 
 			case 7: {
-				listaRemedio();
+
+				if (bancoUsuario.listarUsuarios().isEmpty()) {
+					System.out.println("Apenas usuários cadastrados podem realizar esta ação.");
+					System.out.println("---------------------------------------------------------------");
+
+				} else {
+					listaRemedio();
+
+				}
 				continue;
-				// listar remédios existentes
+
 			}
 
 			case 8: {
-				// listar feedbacks de consultas existentes
+				if (bancoUsuario.listarUsuarios().isEmpty()) {
+					System.out.println("Apenas usuários cadastrados podem realizar esta ação.");
+					System.out.println("---------------------------------------------------------------");
+
+				} else {
+					// listar feedbacks de consultas existentes
+
+				}
+				continue;
+
 			}
 			}
+
 		}
 
 	}
@@ -116,7 +169,7 @@ public class InterfaceSistema {
 			System.out.println("Não há remédios cadastrados em nosso sistema.");
 		}
 	}
-	
+
 	public static void listaConsultas() {
 		ConsultaDAO consultaBanco = ConsultaDAO.getInstancia();
 		if (!consultaBanco.consultas().isEmpty()) {
@@ -160,9 +213,9 @@ public class InterfaceSistema {
 		}
 
 		System.out.println("Tipo de Remédio:");
-		String Tipo = leitura.nextLine();
-		if (!Tipo.isEmpty()) {
-			remedio.setMarca(Tipo);
+		String tipo = leitura.nextLine();
+		if (!tipo.isEmpty()) {
+			remedio.setTipoRemedio(tipo);
 		}
 
 		System.out.println("Horário para tomá-lo:");
@@ -173,7 +226,7 @@ public class InterfaceSistema {
 		if (!horaRemedio.isEmpty() && !minutoRemedio.isEmpty()) {
 			int hora = Integer.parseInt(horaRemedio);
 			int minuto = Integer.parseInt(minutoRemedio);
-			LocalDate horario = LocalDate.ofYearDay(hora, minuto);
+			LocalTime horario = LocalTime.of(hora, minuto);
 			remedio.setHorarios(horario);
 		}
 
@@ -249,7 +302,7 @@ public class InterfaceSistema {
 			int dia = Integer.parseInt(diaCon);
 			int mes = Integer.parseInt(mesCon);
 			int ano = Integer.parseInt(anoCon);
-			LocalDate data = LocalDate.of(dia, mes, ano);
+			LocalDate data = LocalDate.of(ano, mes, dia);
 			consulta.setDataConsulta(data);
 		}
 		bancoConsultas.inserir(consulta);
@@ -318,7 +371,7 @@ public class InterfaceSistema {
 			;
 		}
 		bancoUsuario.inserir(pessoa);
-		System.out.println("Bem vindo " + pessoa.getNome() + "é um prazer receber você! ");
+		System.out.println("Bem vindo(a) " + pessoa.getNome() + " é um prazer receber você! ");
 
 	}
 }

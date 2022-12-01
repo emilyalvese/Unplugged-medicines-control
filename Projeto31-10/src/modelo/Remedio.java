@@ -1,13 +1,14 @@
 package modelo;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Remedio {
 	private String nome;
 	private String marca;
 	private LocalDate validade;
 	private String TipoRemedio;
-	private LocalDate horarios;
+	private LocalTime  horarios;
 	private Integer quantidadeDiaria;
 	private Integer armazenamentoTotal;
 	
@@ -35,10 +36,10 @@ public class Remedio {
 	public void setTipoRemedio(String tipoRemedio) {
 		TipoRemedio = tipoRemedio;
 	}
-	public LocalDate getHorarios() {
+	public LocalTime getHorarios() {
 		return horarios;
 	}
-	public void setHorarios(LocalDate horarios) {
+	public void setHorarios(LocalTime horarios) {
 		this.horarios = horarios;
 	}
 	public Integer getQuantidadeDiaria() {

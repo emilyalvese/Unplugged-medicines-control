@@ -2,11 +2,9 @@ package controle;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 
 import modelo.Consulta;
 import modelo.IConsultaDAO;
-import modelo.Usuario;
 
 public class ConsultaDAO implements IConsultaDAO{
 

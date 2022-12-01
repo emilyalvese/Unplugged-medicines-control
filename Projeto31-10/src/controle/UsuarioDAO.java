@@ -15,7 +15,6 @@ public class UsuarioDAO implements IUsuarioDAO {
 
 
 	public ArrayList<Usuario> usuarios() {//exemplo listagem 
-		System.out.println("passou aqui");
 	if(!tabelaUsuarios.isEmpty()) {
 		for (Usuario usuario : tabelaUsuarios) {
 			System.out.println("-------------");
