@@ -178,6 +178,15 @@ public class InterfaceSistema {
 			System.out.println("Não há consultas cadastradas em nosso sistema.");
 		}
 	}
+	
+	public static void feedbackConsultas() {
+		DetalheConsultaDAO detalheBanco = DetalheConsultaDAO.getInstancia();
+		if (!detalheBanco.listarConsultas().isEmpty()) {
+			detalheBanco.listarConsultas();
+		} else {
+			System.out.println("Não há detalhes de consultas cadastrados em nosso sistema.");
+		}
+	}
 
 	public static void cadastroRemedio() {
 		Scanner leitura = new Scanner(System.in);
