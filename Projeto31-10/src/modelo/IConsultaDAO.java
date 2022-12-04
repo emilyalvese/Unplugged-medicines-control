@@ -7,9 +7,9 @@ public interface IConsultaDAO {
 	
 	public boolean inserir (Consulta c);
 	
-	public boolean alterar (Consulta c, LocalDate dataConsulta);
+	public boolean alterar (Consulta c, String cidConsulta);
 	
-	public boolean deletar (Consulta c, LocalDate dataConsulta);
+	public boolean deletar (Consulta c, String cidConsulta);
 	
 	public ArrayList<Consulta> listaConsultas();
 

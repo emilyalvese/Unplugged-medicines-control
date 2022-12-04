@@ -27,11 +27,14 @@ public class RemedioDAO  implements IRemedioDAO {
 			System.out.println("Horários:" + remedio.getHorarios());
 			System.out.println("Quantidade diária:" + remedio.getQuantidadeDiaria());
 			System.out.println("Armazenamento total: "+ remedio.getArmazenamentoTotal());
+			System.out.println("Código de Barras: " + remedio.getCodigoDeBarra());
 
 		}
 	}
 		return tabelaRemedio;
 	}
+	
+
 	public static RemedioDAO getInstancia() {
 		if (instancia == null) {
 			instancia = new RemedioDAO();
@@ -50,9 +53,9 @@ public class RemedioDAO  implements IRemedioDAO {
 	}
 	
 	@Override
-	public boolean removeRemedio(Remedio r, String nome) {
+	public boolean removeRemedio(Remedio r, Long CodigoDeBarras) {
 		for (Remedio remedio : tabelaRemedio) {
-			if (remedio.getNome().equals(nome)) {
+			if (remedio.getCodigoDeBarras().equals(CodigoDeBarras)) {
 				tabelaRemedio.remove(remedio);
 				return true;
 			}
@@ -72,6 +75,7 @@ public class RemedioDAO  implements IRemedioDAO {
 				remedio.setHorarios(r.getHorarios());
 				remedio.setQuantidadeDiaria(r.getQuantidadeDiaria());
 				remedio.setArmazenamentoTotal(r.getArmazenamentoTotal());
+				remedio.setCodigoDeBarra(r.getCodigoDeBarra());
 				return true;
 			}
 		}

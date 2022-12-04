@@ -36,7 +36,11 @@ public class InterfaceSistema {
 			System.out.println("--- 6 LISTAR CONSULTAS EXISTENTES ---");
 			System.out.println("--- 7 LISTAR REMÉDIOS EXISTENTES ---");
 			System.out.println("--- 8 LISTAR AVALIAÇÕES DE CONSULTAS EXISTENTES ---");
-
+			System.out.println("--- 9 REMOVER USUÁRIOS EXISTENTES ---");
+			System.out.println("--- 10 REMOVER REMÉDIOS EXISTENTES ---");
+			System.out.println("--- 11 REMOVER CONSULTAS EXISTENTES ---");
+			opcaoSwitch = Integer.valueOf(leitura.nextLine());
+			
 			opcaoSwitch = Integer.valueOf(leitura.nextLine());
 
 			switch (opcaoSwitch) {
@@ -142,11 +146,104 @@ public class InterfaceSistema {
 				continue;
 
 			}
+			case 9: {
+
+				if (bancoUsuario.listarUsuarios().isEmpty()) {
+					System.out.println("Apenas usuários cadastrados podem realizar esta ação.");
+					System.out.println("---------------------------------------------------------------");
+
+				} else {
+					System.out.println("Digite o email do usuário que deseja excluir");
+					String email = leitura.nextLine();
+					deletarUsuario(email);
+				}
+
+			}
+			case 10: {
+
+				if (bancoUsuario.listarUsuarios().isEmpty()) {
+					System.out.println("Apenas usuários cadastrados podem realizar esta ação.");
+					System.out.println("---------------------------------------------------------------");
+
+				} else {
+					System.out.println("Digite o código de barras do remédio que deseja excluir");
+					String CodigoDeBarras = leitura.nextLine();
+					Long cod = Long.valueOf(CodigoDeBarras);
+					deletarRemedio(cod);
+				}
+
+			}
+			case 11: {
+
+				if (bancoUsuario.listarUsuarios().isEmpty()) {
+					System.out.println("Apenas usuários cadastrados podem realizar esta ação.");
+					System.out.println("---------------------------------------------------------------");
+
+				} else {
+
+					System.out.println("Digite o código CID da consulta que deseja excluir");
+					String codCID = leitura.nextLine();
+					deletarConsulta(codCID);
+				}
+
+			}
+			
+			
 			}
 
 		}
 
 	}
+	
+	
+	public static void deletarConsulta(String cidConsulta) {
+		Consulta consulta = new Consulta();
+		ConsultaDAO dbConsuta = ConsultaDAO.getInstancia();
+
+		if (!dbConsuta.consultas().isEmpty()) {
+			final boolean consultaDeletada = dbConsuta.deletar(consulta, cidConsulta);
+
+			if (consultaDeletada == true) {
+				System.out.println("Cosnulta removida com sucesso!");
+			} else {
+				System.out.println("Erro ao deletar consulta, por favor tente novamente mais tarde");
+			}
+
+		}
+
+	}
+
+	public static void deletarRemedio(Long CodigoDeBarras) {
+		Remedio medicine = new Remedio();
+		RemedioDAO dbMedicine = RemedioDAO.getInstancia();
+
+		if (!dbMedicine.remedios().isEmpty()) {
+			final boolean medicineDeleted = dbMedicine.removeRemedio(medicine, CodigoDeBarras);
+			if (medicineDeleted == true) {
+				System.out.println("Remédio removido com sucesso!");
+			} else {
+				System.out.println("Ocorreu algum erro ao excluir o remédio, por favor tente novamente mais tarde");
+			}
+		}
+	}
+	
+
+	public static void deletarUsuario(String email) {
+		Usuario user = new Usuario();
+		UsuarioDAO usuarioBanco = UsuarioDAO.getInstancia();
+		if (!usuarioBanco.usuarios().isEmpty()) {
+			final boolean userDeleted = usuarioBanco.deletar(user, email);
+			if (userDeleted == true) {
+				System.out.println("Usuário removido com sucesso!");
+			} else {
+				System.out.println("Ocorreu algum ero ao excluir o usuário, por favor tente novamente mais tarde");
+			}
+		}
+	}
+
+		
+			
+	
 
 	public static void listaUsuarios() {
 		UsuarioDAO usuarioBanco = UsuarioDAO.getInstancia();
@@ -245,16 +342,24 @@ public class InterfaceSistema {
 			int quant = Integer.parseInt(quantidade);
 			remedio.setQuantidadeDiaria(quant);
 		}
-
+		
 		System.out.println("Quantidade total do medicamento que você possui:");
 		String estoque = leitura.nextLine();
 		if (!estoque.isEmpty()) {
 			int armazenamento = Integer.parseInt(estoque);
 			remedio.setArmazenamentoTotal(armazenamento);
 		}
+		System.out.println("Digite o código de barras do remédio: ");
+		String codBarras = leitura.nextLine();
+		if (!codBarras.isEmpty()) {
+			Long cod = Long.valueOf(codBarras);
+			remedio.setCodigoDeBarra(cod);
+		}
 		bancoRemedio.cadastrarRemedio(remedio);
 
 	}
+
+	
 
 	public static void cadastroDetalhesConsulta() {
 		DetalheConsulta consulta = new DetalheConsulta();
@@ -306,16 +411,21 @@ public class InterfaceSistema {
 
 		System.out.println("Insira o ano da sua consulta");
 		String anoCon = leitura.nextLine();
+		
+		System.out.println("Digite o cid da consulta: ");
+		String cid = leitura.nextLine();
 
 		if (!diaCon.isEmpty() && !mesCon.isEmpty() && !anoCon.isEmpty()) {
 			int dia = Integer.parseInt(diaCon);
 			int mes = Integer.parseInt(mesCon);
 			int ano = Integer.parseInt(anoCon);
 			LocalDate data = LocalDate.of(ano, mes, dia);
-			consulta.setDataConsulta(data);
+			consulta.setCidConsulta(cid);
 		}
 		bancoConsultas.inserir(consulta);
 	}
+	
+	
 
 	public static void cadastroUsuario() {
 		Usuario pessoa = new Usuario();

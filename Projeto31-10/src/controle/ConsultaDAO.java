@@ -18,7 +18,7 @@ public class ConsultaDAO implements IConsultaDAO{
 		if (!tabelaConsultas.isEmpty()) {
 			for (Consulta consulta : tabelaConsultas) {
 				System.out.println("-------------");
-				System.out.println("Data da consulta:"+consulta.getDataConsulta());
+				System.out.println("Data da consulta:"+consulta.getCidConsulta());
 			}
 		}
 		
@@ -47,9 +47,9 @@ public class ConsultaDAO implements IConsultaDAO{
 	}
 
 	@Override
-	public boolean alterar(Consulta c, LocalDate dataConsulta) {
+	public boolean alterar(Consulta c, String cidConsulta) {
 		for (Consulta consulta : tabelaConsultas) {
-			if (consulta.getDataConsulta().equals(dataConsulta)) {
+			if (consulta.getCidConsulta().equals(cidConsulta)) {
 				
 				return true;
 			}
@@ -59,9 +59,9 @@ public class ConsultaDAO implements IConsultaDAO{
 	}
 
 	@Override
-	public boolean deletar(Consulta c, LocalDate dataConsulta) {
+	public boolean deletar(Consulta c, String cidConsulta) {
 		for (Consulta consulta : tabelaConsultas) {
-			if (consulta.getDataConsulta().equals(dataConsulta)) {
+			if (consulta.getCidConsulta().equals(cidConsulta)) {
 				tabelaConsultas.remove(consulta);
 				return true;
 			}

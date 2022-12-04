@@ -36,7 +36,7 @@ public class DetalheConsultaDAO implements IDetalheConsultaDAO {
 		for (DetalheConsulta detalheConsulta : tabelaDetalheConsultas) {
 			if (detalheConsulta.getTipoConsulta().equals(motivoConsulta)) {
 
-				detalheConsulta.setDataConsulta(c.getDataConsulta());
+				detalheConsulta.setCidConsulta(c.getCidConsulta());
 				detalheConsulta.setFeedbackConsulta(c.getFeedbackConsulta());
 				detalheConsulta.setLocalConsulta(c.getLocalConsulta());
 				detalheConsulta.setMotivoConsulta(c.getMotivoConsulta());

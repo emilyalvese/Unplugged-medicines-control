@@ -11,6 +11,7 @@ public class Remedio {
 	private LocalTime  horarios;
 	private Integer quantidadeDiaria;
 	private Integer armazenamentoTotal;
+	private Long CodigoDeBarras;
 	
 	public String getNome() {
 		return nome;
@@ -20,6 +21,12 @@ public class Remedio {
 	}
 	public String getMarca() {
 		return marca;
+	}
+	public Long getCodigoDeBarra() {
+		return CodigoDeBarras;
+	}
+	public void setCodigoDeBarra(Long codigoDeBarra) {
+		CodigoDeBarras = codigoDeBarra;
 	}
 	public void setMarca(String marca) {
 		this.marca = marca;
@@ -53,6 +60,10 @@ public class Remedio {
 	}
 	public void setArmazenamentoTotal(Integer armazenamentoTotal) {
 		this.armazenamentoTotal = armazenamentoTotal;
+	}
+	public Object getCodigoDeBarras() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
