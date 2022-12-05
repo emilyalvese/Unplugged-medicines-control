@@ -40,8 +40,6 @@ public class InterfaceSistema {
 			System.out.println("--- 10 REMOVER REMÉDIOS EXISTENTES ---");
 			System.out.println("--- 11 REMOVER CONSULTAS EXISTENTES ---");
 			opcaoSwitch = Integer.valueOf(leitura.nextLine());
-			
-			opcaoSwitch = Integer.valueOf(leitura.nextLine());
 
 			switch (opcaoSwitch) {
 			case 0: {
@@ -56,7 +54,13 @@ public class InterfaceSistema {
 					cadastroUsuario();
 					continue;
 				} else {
-					System.out.println("Bem vindo(a) " + u.getNome() + " é um prazer receber você! ");
+					System.out.println("Deseja cadastrar outro usuário? Responda com sim ou não. ");
+					String valor = leitura.nextLine();
+					if (valor.equals("sim")) {
+						cadastroUsuario();
+					} else {
+						System.out.println("Operação cancelada pelo usuário");
+					}
 					continue;
 				}
 			}
@@ -140,7 +144,7 @@ public class InterfaceSistema {
 					System.out.println("---------------------------------------------------------------");
 
 				} else {
-					// listar feedbacks de consultas existentes
+					feedbackConsultas();
 
 				}
 				continue;
@@ -187,15 +191,33 @@ public class InterfaceSistema {
 				}
 
 			}
-			
-			
+			case 12: {
+				System.out.println("Digite o código CID da consulta que deseja alterar");
+				String codCIDAlteracao = leitura.nextLine();
+				alterarConsulta(codCIDAlteracao);
+			}
+				continue;
+
 			}
 
 		}
 
 	}
-	
-	
+
+	public static void alterarConsulta(String cidConsulta) {
+		ConsultaDAO dbConsulta = ConsultaDAO.getInstancia();
+		Consulta consulta = new Consulta();
+		if (!dbConsulta.consultas().isEmpty()) {
+			final boolean alterarConsulta = dbConsulta.alterar(consulta, cidConsulta);
+
+			if (alterarConsulta == true) {
+				System.out.println("Consulta alterada com sucesso!");
+			} else {
+				System.out.println("Erro ao alterar consulta, por favor tente novamente mais tarde.");
+			}
+		}
+	}
+
 	public static void deletarConsulta(String cidConsulta) {
 		Consulta consulta = new Consulta();
 		ConsultaDAO dbConsuta = ConsultaDAO.getInstancia();
@@ -226,7 +248,6 @@ public class InterfaceSistema {
 			}
 		}
 	}
-	
 
 	public static void deletarUsuario(String email) {
 		Usuario user = new Usuario();
@@ -240,10 +261,6 @@ public class InterfaceSistema {
 			}
 		}
 	}
-
-		
-			
-	
 
 	public static void listaUsuarios() {
 		UsuarioDAO usuarioBanco = UsuarioDAO.getInstancia();
@@ -270,12 +287,12 @@ public class InterfaceSistema {
 	public static void listaConsultas() {
 		ConsultaDAO consultaBanco = ConsultaDAO.getInstancia();
 		if (!consultaBanco.consultas().isEmpty()) {
-			consultaBanco.listaConsultas();
+			consultaBanco.consultas();
 		} else {
 			System.out.println("Não há consultas cadastradas em nosso sistema.");
 		}
 	}
-	
+
 	public static void feedbackConsultas() {
 		DetalheConsultaDAO detalheBanco = DetalheConsultaDAO.getInstancia();
 		if (!detalheBanco.listarConsultas().isEmpty()) {
@@ -342,7 +359,7 @@ public class InterfaceSistema {
 			int quant = Integer.parseInt(quantidade);
 			remedio.setQuantidadeDiaria(quant);
 		}
-		
+
 		System.out.println("Quantidade total do medicamento que você possui:");
 		String estoque = leitura.nextLine();
 		if (!estoque.isEmpty()) {
@@ -358,8 +375,6 @@ public class InterfaceSistema {
 		bancoRemedio.cadastrarRemedio(remedio);
 
 	}
-
-	
 
 	public static void cadastroDetalhesConsulta() {
 		DetalheConsulta consulta = new DetalheConsulta();
@@ -411,7 +426,7 @@ public class InterfaceSistema {
 
 		System.out.println("Insira o ano da sua consulta");
 		String anoCon = leitura.nextLine();
-		
+
 		System.out.println("Digite o cid da consulta: ");
 		String cid = leitura.nextLine();
 
@@ -421,11 +436,10 @@ public class InterfaceSistema {
 			int ano = Integer.parseInt(anoCon);
 			LocalDate data = LocalDate.of(ano, mes, dia);
 			consulta.setCidConsulta(cid);
+			consulta.setData(data);
 		}
 		bancoConsultas.inserir(consulta);
 	}
-	
-	
 
 	public static void cadastroUsuario() {
 		Usuario pessoa = new Usuario();
@@ -474,7 +488,7 @@ public class InterfaceSistema {
 		System.out.println("Informe seu telefone: ");
 		String telefone = leitura.nextLine();
 		if (!telefone.isEmpty()) {
-			pessoa.setTelefone(Integer.valueOf(telefone));
+			pessoa.setTelefone(Long.valueOf(telefone));
 		}
 
 		System.out.println("Informe seu tipo sanguíneo: ");

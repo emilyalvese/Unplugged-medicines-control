@@ -18,7 +18,8 @@ public class ConsultaDAO implements IConsultaDAO{
 		if (!tabelaConsultas.isEmpty()) {
 			for (Consulta consulta : tabelaConsultas) {
 				System.out.println("-------------");
-				System.out.println("Data da consulta:"+consulta.getCidConsulta());
+				System.out.println("Data da consulta:"+consulta.getData());
+				System.out.println("CID da consulta : " + consulta.getCidConsulta());
 			}
 		}
 		
@@ -70,10 +71,7 @@ public class ConsultaDAO implements IConsultaDAO{
 		return false;
 	}
 
-	@Override
-	public ArrayList<Consulta> listaConsultas() {
-		return tabelaConsultas;
-	}
+
 
 	
 

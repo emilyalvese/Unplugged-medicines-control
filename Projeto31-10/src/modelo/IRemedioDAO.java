@@ -8,9 +8,7 @@ public interface IRemedioDAO {
 	
 	public boolean removeRemedio (Remedio r, Long CodigoDeBarras);
 
-	public boolean atualizarRemedio (Remedio r, String nome);
-	
-	public ArrayList<Remedio> consultaRemedios();
+	public boolean atualizarRemedio (Remedio r, Long CodigoDeBarras);
 	
 	public ArrayList<Remedio> remedios();
 }

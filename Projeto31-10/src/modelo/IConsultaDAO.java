@@ -10,8 +10,6 @@ public interface IConsultaDAO {
 	public boolean alterar (Consulta c, String cidConsulta);
 	
 	public boolean deletar (Consulta c, String cidConsulta);
-	
-	public ArrayList<Consulta> listaConsultas();
 
 	public ArrayList<Consulta> consultas();
 	

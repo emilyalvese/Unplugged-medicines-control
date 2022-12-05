@@ -7,7 +7,7 @@ public class Usuario {
 	private String sexo;
 	private LocalDate nascimento;
 	private String endereço;
-	private Integer telefone;
+	private Long telefone;
 	private String tipoSanguineo;
 	private String contatoFamilia;
 	private String email;
@@ -52,11 +52,11 @@ public class Usuario {
 		this.endereço = endereço;
 	}
 
-	public Integer getTelefone() {
+	public Long getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(Integer telefone) {
+	public void setTelefone(Long telefone) {
 		this.telefone = telefone;
 	}
 

@@ -15,8 +15,7 @@ public class RemedioDAO  implements IRemedioDAO {
 	}
 	
 	
-	public ArrayList<Remedio> remedios() {//exemplo listagem 
-		System.out.println("passou aqui");
+	public ArrayList<Remedio> remedios() { 
 	if(!tabelaRemedio.isEmpty()) {
 		for (Remedio remedio : tabelaRemedio) {
 			System.out.println("-------------");
@@ -65,9 +64,9 @@ public class RemedioDAO  implements IRemedioDAO {
 	}
 	
 	@Override
-	public boolean atualizarRemedio(Remedio r, String nome) {
+	public boolean atualizarRemedio(Remedio r, Long CodigoDeBarras) {
 		for (Remedio remedio : tabelaRemedio) {
-			if (remedio.getNome().equals(nome)) {
+			if (remedio.getCodigoDeBarra().equals(CodigoDeBarras)) {
 				remedio.setNome(r.getNome());
 				remedio.setMarca(r.getMarca());
 				remedio.setValidade(r.getValidade());
@@ -81,11 +80,6 @@ public class RemedioDAO  implements IRemedioDAO {
 		}
 		
 		return false;
-	}
-	
-	@Override
-	public ArrayList<Remedio> consultaRemedios(){
-		return tabelaRemedio;
 	}
 
 }
