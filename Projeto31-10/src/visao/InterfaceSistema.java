@@ -40,7 +40,8 @@ public class InterfaceSistema {
 			System.out.println("--- 10 REMOVER REMÉDIOS EXISTENTES ---");
 			System.out.println("--- 11 REMOVER CONSULTAS EXISTENTES ---");
 			System.out.println("--- 12 ATUALIZAR CONSULTAS EXISTENTES---");
-			System.out.println("--- 13 FAZER LIGAÇÃO DE EMERGÊNCIA ---\n");
+			System.out.println("--- 13 FAZER LIGAÇÃO DE EMERGÊNCIA ---");
+			System.out.println("---14 ATUALIZAR USUÁRIO EXSITENTE---\n");
 			opcaoSwitch = Integer.valueOf(leitura.nextLine());
 
 			switch (opcaoSwitch) {
@@ -220,10 +221,77 @@ public class InterfaceSistema {
 			}
 				continue;
 
+			case 14: {
+
+				System.out.println("Digite o email do usuário que deseja alterar: ");
+				String emailAlterado = leitura.nextLine();
+				alterarUsuario(emailAlterado);
+
+			}
+				continue;
+
 			}
 
 		}
 
+	}
+
+	public static void alterarUsuario(String email) {
+		UsuarioDAO dbUsuario = UsuarioDAO.getInstancia();
+
+		Usuario user = new Usuario();
+		if (!dbUsuario.listarUsuarios().isEmpty()) {
+			Scanner leitura = new Scanner(System.in);
+			UsuarioDAO bandoUsuarios = UsuarioDAO.getInstancia();
+			System.out.println("Alterar dados do usuário");
+
+			System.out.println("Insira o nome do usuário: ");
+			String nome = leitura.nextLine();
+
+			System.out.println("Insira o sexo: ");
+			String sexo = leitura.nextLine();
+
+			System.out.println("Insira a data de nascimento: ");
+			System.out.println("Insira o dia:");
+			String diaVal = leitura.nextLine();
+			System.out.println("Insira o mês:");
+			String mesVal = leitura.nextLine();
+			System.out.println("Insira o ano:");
+			String anoVal = leitura.nextLine();
+			if (!diaVal.isEmpty() && !mesVal.isEmpty() && !anoVal.isEmpty()) {
+				int ano = Integer.parseInt(anoVal);
+				int mes = Integer.parseInt(mesVal);
+				int dia = Integer.parseInt(diaVal);
+				LocalDate data = LocalDate.of(ano, mes, dia);
+				user.setNascimento(data);
+			}
+			System.out.println("Informe o endereço: ");
+			String endereco = leitura.nextLine();
+
+			System.out.println("Informe seu telefone: ");
+			String telefone = leitura.nextLine();
+			if (!telefone.isEmpty()) {
+				user.setTelefone(Long.valueOf(telefone));
+			}
+			System.out.println("Informe seu email: ");
+			String novoEmail = leitura.nextLine();
+
+			System.out.println("Informe seu tipo sanguíneo: ");
+			String tipoSanguineo = leitura.nextLine();
+
+			System.out.println("Informe um contato de algum familiar: ");
+			String contatoFamilia = leitura.nextLine();
+
+			final boolean usuarioAlterado = dbUsuario.alterar(user, novoEmail);
+
+			if (usuarioAlterado == true) {
+				System.out.println("Usuário alterado com sucesso! ");
+			} else {
+				System.out.println("Ocorreu algum erro ao alterar seu usuário, por favor tente novamente mais tarde. \n");
+
+			}
+
+		}
 	}
 
 	public static void alterarConsulta(String cidConsulta) {
