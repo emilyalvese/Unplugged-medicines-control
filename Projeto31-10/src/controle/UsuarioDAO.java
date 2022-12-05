@@ -55,7 +55,16 @@ public class UsuarioDAO implements IUsuarioDAO {
 	public boolean alterar(Usuario u, String email) {
 		for (Usuario usuario : tabelaUsuarios) {
 			if (usuario.getEmail().equals(email)) {
+				usuario.setNome(usuario.getNome());
+				usuario.setContatoFamilia(usuario.getContatoFamilia());
 				usuario.setEmail(u.getEmail());
+				usuario.setEndereço(usuario.getEmail());
+				usuario.setNascimento(usuario.getNascimento());
+				usuario.setTipoSanguineo(usuario.getTipoSanguineo());
+				usuario.setTelefone(usuario.getTelefone());
+				usuario.setEmail(usuario.getEmail());
+				
+				
 				return true;
 			}
 		}
