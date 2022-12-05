@@ -39,6 +39,7 @@ public class InterfaceSistema {
 			System.out.println("--- 9 REMOVER USUÁRIOS EXISTENTES ---");
 			System.out.println("--- 10 REMOVER REMÉDIOS EXISTENTES ---");
 			System.out.println("--- 11 REMOVER CONSULTAS EXISTENTES ---");
+			System.out.println("--- 13 FAZER LIGAÇÃO DE EMERGÊNCIA ---");
 			opcaoSwitch = Integer.valueOf(leitura.nextLine());
 
 			switch (opcaoSwitch) {
@@ -197,8 +198,21 @@ public class InterfaceSistema {
 				alterarConsulta(codCIDAlteracao);
 			}
 				continue;
+				
+			case 13: {
+				System.out.println("Você deseja fazer uma ligação de emergência? ");
+				String ligacao = leitura.nextLine();
+				if (ligacao.equals("sim")) {
+					System.out.println("FAZENDO LIGAÇÃO...");
+				} else {
+					System.out.println("OPERAÇÃO NÃO REALIZADA PELO USUÁRIO");
+				}
+				
+				
+			}
 
 			}
+			
 
 		}
 
@@ -441,6 +455,7 @@ public class InterfaceSistema {
 		bancoConsultas.inserir(consulta);
 	}
 
+	
 	public static void cadastroUsuario() {
 		Usuario pessoa = new Usuario();
 
@@ -507,4 +522,5 @@ public class InterfaceSistema {
 		System.out.println("Bem vindo(a) " + pessoa.getNome() + " é um prazer receber você! ");
 
 	}
-}
+
+	}
