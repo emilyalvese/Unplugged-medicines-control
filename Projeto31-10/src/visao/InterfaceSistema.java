@@ -40,7 +40,7 @@ public class InterfaceSistema {
 			System.out.println("--- 10 REMOVER REMÉDIOS EXISTENTES ---");
 			System.out.println("--- 11 REMOVER CONSULTAS EXISTENTES ---");
 			System.out.println("--- 12 ATUALIZAR CONSULTAS EXISTENTES---");
-			System.out.println("--- 13 FAZER LIGAÇÃO DE EMERGÊNCIA ---");
+			System.out.println("--- 13 FAZER LIGAÇÃO DE EMERGÊNCIA ---\n");
 			opcaoSwitch = Integer.valueOf(leitura.nextLine());
 
 			switch (opcaoSwitch) {
@@ -191,12 +191,20 @@ public class InterfaceSistema {
 					String codCID = leitura.nextLine();
 					deletarConsulta(codCID);
 				}
+				continue;
 
 			}
 			case 12: {
-				System.out.println("Digite o código CID da consulta que deseja alterar");
-				String codCIDAlteracao = leitura.nextLine();
-				alterarConsulta(codCIDAlteracao);
+				if (!bancoUsuario.listarUsuarios().isEmpty()) {
+					System.out.println("Apenas usuários cadastrados podem realizar esta ação.");
+					System.out.println("---------------------------------------------------------------");
+				} else {
+
+					System.out.println("Digite o código CID da consulta que deseja alterar");
+					String codCIDAlteracao = leitura.nextLine();
+					alterarConsulta(codCIDAlteracao);
+				}
+
 			}
 				continue;
 
@@ -210,6 +218,7 @@ public class InterfaceSistema {
 				}
 
 			}
+				continue;
 
 			}
 
@@ -247,10 +256,10 @@ public class InterfaceSistema {
 
 			final boolean consultaAlterada = dbConsulta.alterar(consulta, cidConsulta);
 			if (consultaAlterada == true) {
-				System.out.println("DEU BOM");
+				System.out.println("Consulta alterada com sucesso!");
 
 			} else {
-				System.out.println("DEU PAU");
+				System.out.println("Ocorreu algum erro ao alterar sua consulta, por favor tente novamente mais tarde");
 			}
 
 		}
