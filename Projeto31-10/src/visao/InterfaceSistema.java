@@ -39,6 +39,7 @@ public class InterfaceSistema {
 			System.out.println("--- 9 REMOVER USUÁRIOS EXISTENTES ---");
 			System.out.println("--- 10 REMOVER REMÉDIOS EXISTENTES ---");
 			System.out.println("--- 11 REMOVER CONSULTAS EXISTENTES ---");
+			System.out.println("--- 12 ATUALIZAR CONSULTAS EXISTENTES---");
 			System.out.println("--- 13 FAZER LIGAÇÃO DE EMERGÊNCIA ---");
 			opcaoSwitch = Integer.valueOf(leitura.nextLine());
 
@@ -198,7 +199,7 @@ public class InterfaceSistema {
 				alterarConsulta(codCIDAlteracao);
 			}
 				continue;
-				
+
 			case 13: {
 				System.out.println("Você deseja fazer uma ligação de emergência? ");
 				String ligacao = leitura.nextLine();
@@ -207,12 +208,10 @@ public class InterfaceSistema {
 				} else {
 					System.out.println("OPERAÇÃO NÃO REALIZADA PELO USUÁRIO");
 				}
-				
-				
+
 			}
 
 			}
-			
 
 		}
 
@@ -222,13 +221,38 @@ public class InterfaceSistema {
 		ConsultaDAO dbConsulta = ConsultaDAO.getInstancia();
 		Consulta consulta = new Consulta();
 		if (!dbConsulta.consultas().isEmpty()) {
-			final boolean alterarConsulta = dbConsulta.alterar(consulta, cidConsulta);
 
-			if (alterarConsulta == true) {
-				System.out.println("Consulta alterada com sucesso!");
-			} else {
-				System.out.println("Erro ao alterar consulta, por favor tente novamente mais tarde.");
+			Scanner leitura = new Scanner(System.in);
+
+			ConsultaDAO bancoConsultas = ConsultaDAO.getInstancia();
+
+			System.out.println("Atualizar dados de sua consulta ");
+
+			System.out.println("Insira o dia da consulta: ");
+			String diaCon = leitura.nextLine();
+
+			System.out.println("Insira o mês da sua consulta: ");
+			String mesCon = leitura.nextLine();
+
+			System.out.println("Insira o ano da sua consulta");
+			String anoCon = leitura.nextLine();
+
+			if (!diaCon.isEmpty() && !mesCon.isEmpty() && !anoCon.isEmpty()) {
+				int dia = Integer.parseInt(diaCon);
+				int mes = Integer.parseInt(mesCon);
+				int ano = Integer.parseInt(anoCon);
+				LocalDate data = LocalDate.of(ano, mes, dia);
+				consulta.setData(data);
 			}
+
+			final boolean consultaAlterada = dbConsulta.alterar(consulta, cidConsulta);
+			if (consultaAlterada == true) {
+				System.out.println("DEU BOM");
+
+			} else {
+				System.out.println("DEU PAU");
+			}
+
 		}
 	}
 
@@ -455,7 +479,6 @@ public class InterfaceSistema {
 		bancoConsultas.inserir(consulta);
 	}
 
-	
 	public static void cadastroUsuario() {
 		Usuario pessoa = new Usuario();
 
@@ -523,4 +546,4 @@ public class InterfaceSistema {
 
 	}
 
-	}
+}

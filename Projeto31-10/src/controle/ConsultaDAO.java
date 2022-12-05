@@ -51,7 +51,7 @@ public class ConsultaDAO implements IConsultaDAO{
 	public boolean alterar(Consulta c, String cidConsulta) {
 		for (Consulta consulta : tabelaConsultas) {
 			if (consulta.getCidConsulta().equals(cidConsulta)) {
-				
+				consulta.setData(c.getData());
 				return true;
 			}
 		}
